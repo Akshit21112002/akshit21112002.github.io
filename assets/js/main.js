@@ -1,7 +1,8 @@
 /* =========================================================
    Akshit Singh — site script
    Background art: one scientific / AI idea per page, drawn as points.
-     diffusion     About          Diffusion model denoising noise into science objects
+     latent        About          A slowly turning vision-language embedding space
+     diffusionLoop (spare)        Diffusion model denoising noise into science objects
      terrain       (spare)        LiDAR scan of drifting ridges
      landscape     Publications   Gradient descent on a loss landscape
      network       Journey        Forward and backward passes in a neural net
@@ -148,8 +149,109 @@
     },
   };
 
-  // 0. Diffusion: denoising pure noise into a galaxy, a strange attractor and DNA --
-  scenes.diffusion = {
+  // 0. Latent space: a calm, slowly turning embedding space --------------------
+  scenes.latent = {
+    title: "Latent space",
+    text: "How a vision-language model organizes meaning: images (amber) and captions (blue) about the same thing sit close together.",
+    push: true,
+    concepts: ["mountains at dusk", "a dog on the beach", "city lights at night", "a bowl of ramen", "a spiral galaxy",
+               "a chest x-ray", "handwritten digits", "a red vintage car", "sheet music"],
+    init() {
+      const gauss = () => { let u = 0; while (!u) u = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * Math.random()); };
+      const K = this.concepts.length;
+      const n = clamp(Math.round((W * H) / (scale * scale) / 800), 900, 1700);
+      // cluster centres spread on a fibonacci sphere
+      this.centers = [];
+      for (let k = 0; k < K; k++) {
+        const y = 1 - (2 * (k + 0.5)) / K, r = Math.sqrt(1 - y * y), th = k * 2.39996;
+        const d = 0.72 + Math.random() * 0.12;
+        this.centers.push([Math.cos(th) * r * d, y * d * 0.85, Math.sin(th) * r * d]);
+      }
+      this.n = n;
+      this.p = new Float32Array(n * 3);
+      this.kind = new Uint8Array(n);        // 0 image, 1 text, 2 background
+      this.ph = new Float32Array(n);
+      const per = [];
+      for (let i = 0; i < n; i++) {
+        this.ph[i] = Math.random() * Math.PI * 2;
+        if (i % 12 === 11) {
+          const v = [gauss(), gauss(), gauss()], m = Math.hypot(...v) || 1, rr = 1.15 * Math.cbrt(Math.random());
+          this.p.set([(v[0] / m) * rr, (v[1] / m) * rr, (v[2] / m) * rr], i * 3);
+          this.kind[i] = 2;
+          continue;
+        }
+        const k = i % K, c = this.centers[k];
+        const sx = 0.09 + (k % 3) * 0.02;
+        this.p.set([c[0] + gauss() * sx, c[1] + gauss() * sx * 0.8, c[2] + gauss() * sx], i * 3);
+        this.kind[i] = (i / K) & 1;
+        (per[k] = per[k] || [[], []])[this.kind[i]].push(i);
+      }
+      // a few matched image-caption pairs per concept, drawn as faint links
+      this.pairs = [];
+      per.forEach((g) => { for (let j = 0; j < 3 && j < g[0].length && j < g[1].length; j++) this.pairs.push([g[0][j], g[1][j]]); });
+      this.proj = new Float32Array(n * 3);
+      this.cproj = this.centers.map(() => [0, 0, 1]);
+    },
+    project(x, y, z, o) {
+      let X = x * o.cy + z * o.sy, Z = -x * o.sy + z * o.cy;
+      const Y = y * o.cp - Z * o.sp; Z = y * o.sp + Z * o.cp;
+      const s = 3 / (3 + Z);
+      return [o.cx0 + X * o.R * s, o.cy0 + Y * o.R * s, s, Z];
+    },
+    draw(t) {
+      faintGrid();
+      const wide = W > 900 * scale;
+      const yaw = t * 0.035, pitch = 0.32 + Math.sin(t * 0.021) * 0.06;
+      const o = {
+        cy: Math.cos(yaw), sy: Math.sin(yaw), cp: Math.cos(pitch), sp: Math.sin(pitch),
+        cx0: W * (wide ? 0.75 : 0.5), cy0: H * (wide ? 0.45 : 0.33), R: Math.min(W * (wide ? 0.21 : 0.4), H * 0.36),
+      };
+      this.wide = wide;
+      const P = this.p, pr = this.proj;
+      for (let i = 0; i < this.n; i++) {
+        const k = i * 3, w = 0.012 * Math.sin(t * 0.25 + this.ph[i]);
+        const q = this.project(P[k] + w, P[k + 1] + w * 0.7, P[k + 2] - w, o);
+        pr[k] = q[0]; pr[k + 1] = q[1]; pr[k + 2] = q[2];
+      }
+      // links between matched pairs
+      for (const [a, b] of this.pairs) {
+        const ax = pr[a * 3], ay = pr[a * 3 + 1], bx = pr[b * 3], by = pr[b * 3 + 1];
+        const steps = Math.max(2, Math.floor(Math.hypot(bx - ax, by - ay) / (gap * 0.9)));
+        for (let j = 1; j < steps; j++) { const f = j / steps; dot(ax + (bx - ax) * f, ay + (by - ay) * f, 0, 120, 122, 178, a + j); }
+      }
+      for (let i = 0; i < this.n; i++) {
+        const k = i * 3, s = pr[k + 2], kd = this.kind[i];
+        const depth = clamp(0.35 + (s - 0.75) * 1.4, 0.3, 1.05);
+        const col = kd === 0 ? AMBER : kd === 1 ? BLUE : [150, 150, 196];
+        const size = kd === 2 ? 0.25 : 0.55;
+        dot(pr[k], pr[k + 1], maxR * size * s * 1.1, col[0] * depth, col[1] * depth, col[2] * depth, i);
+      }
+      this.centers.forEach((c, k) => { this.cproj[k] = this.project(c[0], c[1], c[2], o); });
+    },
+    overlay(g) {
+      if (!this.wide || F.sweeping) return;
+      const fade = 1 - F.ep;
+      g.textAlign = "left";
+      g.textBaseline = "middle";
+      this.cproj.forEach(([x, y, s], k) => {
+        const a = clamp((s - 0.97) * 3, 0, 1) * 0.85 * fade;
+        if (a < 0.03 || x < W * 0.52) return;
+        const lx = x + 34 * scale * s, ly = y - 26 * scale * s;
+        g.font = "italic " + Math.round(15 * scale * s) + 'px "Times New Roman", Times, serif';
+        g.lineJoin = "round";
+        g.lineWidth = 5 * scale;
+        g.strokeStyle = "rgba(18, 20, 43, " + (a * 0.9).toFixed(3) + ")";
+        g.strokeText(this.concepts[k], lx, ly);
+        g.fillStyle = "rgba(226, 224, 244, " + a.toFixed(3) + ")";
+        g.fillText(this.concepts[k], lx, ly);
+      });
+    },
+  };
+  // The About page used to say data-scene="diffusion"; it now shows the calm latent space.
+  const SCENE_ALIASES = { diffusion: "latent" };
+
+  // Spare: diffusion loop (denoising noise into a galaxy, attractor and DNA) --
+  scenes.diffusionLoop = {
     title: "Diffusion",
     text: "A generative model denoising pure noise into a galaxy, a strange attractor and DNA, then letting each dissolve back.",
     push: true,
@@ -473,7 +575,7 @@
     },
   };
 
-  const scene = scenes[body.dataset.scene] || scenes.diffusion;
+  const scene = scenes[SCENE_ALIASES[body.dataset.scene] || body.dataset.scene] || scenes.latent;
 
   function resize() {
     const cssW = window.innerWidth, cssH = window.innerHeight;
@@ -511,6 +613,7 @@
     F.push = scene.push && !reduceMotion && mouse.x > -1e3;
     scene.draw(simTime / 1000);
     ctx.putImageData(img, 0, 0);
+    if (scene.overlay) scene.overlay(ctx);
     if (capStatus && scene.status !== undefined && capStatus.textContent !== scene.status) capStatus.textContent = scene.status;
   }
 
