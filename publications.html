@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Publications | Akshit Singh</title>
+  <meta name="description" content="Publications by Akshit Singh on vision-language models, 3D vision and trustworthy AI.">
+  <meta name="theme-color" content="#12142b">
+  <meta property="og:title" content="Publications | Akshit Singh">
+  <meta property="og:description" content="Publications by Akshit Singh on vision-language models, 3D vision and trustworthy AI.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='16' fill='%2312142b'/><circle cx='11' cy='13' r='3' fill='%23ffb547'/><circle cx='20' cy='11' r='2' fill='%23e8e6f3'/><circle cx='17' cy='20' r='3.5' fill='%23e8e6f3'/><circle cx='24' cy='19' r='1.5' fill='%23ffb547'/></svg>">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<!-- Background art for this page: data-scene = terrain | landscape | network | interference -->
+<body data-scene="landscape">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="bg" aria-hidden="true">
+    <canvas id="bg-art"></canvas>
+  </div>
+  <div class="scrim" aria-hidden="true"></div>
+
+  <header class="site-nav">
+    <nav class="wrap nav-inner" aria-label="Main">
+      <a class="nav-name" href="index.html">Akshit Singh</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">About</a></li>
+          <li><a href="publications.html" aria-current="page">Publications</a></li>
+          <li><a href="journey.html">Journey</a></li>
+          <li><a href="cv.html">CV</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page">
+    <main id="main">
+      <section class="hero">
+        <div class="wrap hero-anim">
+          <h1 class="page-title">Publications</h1>
+          <p class="page-intro">Papers on vision-language models, 3D vision and trustworthy AI systems.</p>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <div class="filters" role="group" aria-label="Filter by topic">
+          <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-filter="vl" aria-pressed="false">Vision and language</button>
+          <button class="chip" type="button" data-filter="3d" aria-pressed="false">3D vision</button>
+          <button class="chip" type="button" data-filter="other" aria-pressed="false">Connected vehicles</button>
+          <span class="pub-count" data-pub-count aria-live="polite">5 papers</span>
+        </div>
+        <ul class="pubs">
+          <li class="pub pub--featured" data-topic="vl">
+            <div class="pub-venue"><b>CVPR 2026</b><span>IEEE/CVF Conference on Computer Vision and Pattern Recognition</span></div>
+            <div>
+              <span class="badge">First author</span><h3>TTRV: Test-Time Reinforcement Learning for Vision Language Models</h3>
+              <p class="authors"><span class="me">Akshit Singh</span>, Shyam Marjit, Wei Lin, Paul Gavrikov, Serena Yeung-Levy, Hilde Kuehne, Rogerio Feris, Sivan Doveh, James Glass, M. Jehanzeb Mirza</p>
+              <button class="toggle" type="button" data-toggle aria-expanded="false" aria-controls="p-ttrv" data-open="What it does" data-close="Hide summary"><span data-toggle-label>What it does</span></button>
+              <div class="panel" id="p-ttrv"><div><p class="muted" style="margin:.8rem 0 0;max-width:62ch">TTRV adapts a vision-language model during inference with reinforcement learning, using rewards computed from the model&rsquo;s own outputs: how often an answer appears, and how diverse the answers are. No labels are needed, it works even from a single unlabeled test sample, and across 15+ multimodal benchmarks it lifts open-source models past GPT-4o by 2%.</p></div></div>
+              <div class="pub-links">
+                <!-- TODO: replace # with your real links -->
+                <a href="#">Project page</a>
+                <a href="#">Paper</a>
+                <a href="#">Code</a>
+              </div>
+            </div>
+          </li>
+          <li class="pub" data-topic="3d">
+            <div class="pub-venue"><b>ACCV 2024</b><span>17th Asian Conference on Computer Vision</span></div>
+            <div>
+              <span class="badge">Oral, 5.6% acceptance</span><span class="badge">First author</span><h3>CCNDF: Curvature Constrained Neural Distance Fields from 3D LiDAR Sequences</h3>
+              <p class="authors"><span class="me">Akshit Singh</span>, Karan Bhakuni, Rajendra Nagar</p>
+              <button class="toggle" type="button" data-toggle aria-expanded="false" aria-controls="p-ccndf" data-open="What it does" data-close="Hide summary"><span data-toggle-label>What it does</span></button>
+              <div class="panel" id="p-ccndf"><div><p class="muted" style="margin:.8rem 0 0;max-width:62ch">Neural distance fields struggle on curved, complex geometry. CCNDF uses second-order derivatives of the field to estimate the radius of curvature and constrains learning with it, giving better mapping and localization from LiDAR sequences.</p></div></div>
+              <div class="pub-links">
+                <!-- TODO: replace # with your real links -->
+                <a href="#">Paper</a>
+                <a href="#">Code</a>
+              </div>
+            </div>
+          </li>
+          <li class="pub" data-topic="other">
+            <div class="pub-venue"><b>Vehicular Communications</b><span>Elsevier, impact factor 6.5</span></div>
+            <div>
+              <span class="badge">First author</span><h3>Advancing Connected Vehicle Security with Comprehensive Datasets and Novel Anomaly Detection and Recovery Techniques</h3>
+              <p class="authors"><span class="me">Akshit Singh</span>, Heena Rathore</p>
+              <button class="toggle" type="button" data-toggle aria-expanded="false" aria-controls="p-cv" data-open="What it does" data-close="Hide summary"><span data-toggle-label>What it does</span></button>
+              <div class="panel" id="p-cv"><div><p class="muted" style="margin:.8rem 0 0;max-width:62ch">A reproducible dataset built by interpolating the U.S. DOT Tampa connected-vehicle data with simulated sensor faults (white and L&eacute;vy noise, bias, spikes), plus a framework that detects and recovers from anomalies in real time with Bayesian online changepoint detection and Bayesian forecasting.</p></div></div>
+              <div class="pub-links">
+                <!-- TODO: replace # with your real links -->
+                <a href="#">Paper</a>
+              </div>
+            </div>
+          </li>
+          <li class="pub" data-topic="vl">
+            <div class="pub-venue"><b>AAAI 2024</b><span>Student Abstract, 38th AAAI Conference on Artificial Intelligence</span></div>
+            <div>
+              <span class="badge">Sole author</span><h3>Diverse Yet Biased: Towards Mitigating Biases in Generative AI</h3>
+              <p class="authors"><span class="me">Akshit Singh</span></p>
+              <button class="toggle" type="button" data-toggle aria-expanded="false" aria-controls="p-bias" data-open="What it does" data-close="Hide summary"><span data-toggle-label>What it does</span></button>
+              <div class="panel" id="p-bias"><div><p class="muted" style="margin:.8rem 0 0;max-width:62ch">A study of cultural bias in text-to-image generation, supported by two new datasets with more than 250,000 image-caption pairs that capture Indian context and heritage.</p></div></div>
+              <div class="pub-links">
+                <!-- TODO: replace # with your real links -->
+                <a href="#">Paper</a>
+              </div>
+            </div>
+          </li>
+          <li class="pub" data-topic="3d">
+            <div class="pub-venue"><b>Under review</b><span>IEEE Signal Processing Letters</span></div>
+            <div>
+              <span class="badge">Equal contribution</span><h3>Deep Dense Clothed Genus-0 Human 3D Shape Matching using Spherical Harmonics</h3>
+              <p class="authors">Deepanshu Solanki*, <span class="me">Akshit Singh</span>*, Rajendra Nagar</p>
+              <button class="toggle" type="button" data-toggle aria-expanded="false" aria-controls="p-shape" data-open="What it does" data-close="Hide summary"><span data-toggle-label>What it does</span></button>
+              <div class="panel" id="p-shape"><div><p class="muted" style="margin:.8rem 0 0;max-width:62ch">Clothed human meshes are mapped onto spheres with M&ouml;bius transformations, turning a non-rigid problem into a rigid one. Graph neural networks and spherical harmonics then produce features that a functional-map solver uses for dense correspondence.</p></div></div>
+              <div class="pub-links">
+                <!-- TODO: replace # with your real links -->
+                <a href="#">Paper</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p class="muted" style="padding:1rem 0 4rem;font-size:.95rem">* Equal contribution. Full list on <a href="#">Google Scholar</a>.</p>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>&copy; <span data-year>2026</span> Akshit Singh</span>
+        <span>The background art is generated live in your browser: one idea from science or AI on each page.</span>
+      </div>
+    </footer>
+  </div>
+
+  <button class="art-pause" type="button" data-pause aria-pressed="false"><span>Pause animation</span></button>
+  <p class="scene-caption" aria-hidden="true"><b data-scene-title></b><span data-scene-text></span></p>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

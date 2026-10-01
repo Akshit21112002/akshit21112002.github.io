@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CV | Akshit Singh</title>
+  <meta name="description" content="CV of Akshit Singh.">
+  <meta name="theme-color" content="#12142b">
+  <meta property="og:title" content="CV | Akshit Singh">
+  <meta property="og:description" content="CV of Akshit Singh.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='16' fill='%2312142b'/><circle cx='11' cy='13' r='3' fill='%23ffb547'/><circle cx='20' cy='11' r='2' fill='%23e8e6f3'/><circle cx='17' cy='20' r='3.5' fill='%23e8e6f3'/><circle cx='24' cy='19' r='1.5' fill='%23ffb547'/></svg>">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<!-- Background art for this page: data-scene = terrain | landscape | network | interference -->
+<body data-scene="interference">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="bg" aria-hidden="true">
+    <canvas id="bg-art"></canvas>
+  </div>
+  <div class="scrim" aria-hidden="true"></div>
+
+  <header class="site-nav">
+    <nav class="wrap nav-inner" aria-label="Main">
+      <a class="nav-name" href="index.html">Akshit Singh</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">About</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="journey.html">Journey</a></li>
+          <li><a href="cv.html" aria-current="page">CV</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page">
+    <main id="main">
+      <section class="hero">
+        <div class="wrap hero-anim">
+          <h1 class="page-title">CV</h1>
+          <p class="page-intro">My full academic CV, with publications, research experience and education.</p>
+          <div class="actions" style="margin-top:2rem">
+            <a class="btn btn--solid" href="assets/Akshit_Singh_CV.pdf" target="_blank" rel="noopener">Open CV in a new tab</a>
+            <a class="btn btn--ghost" href="assets/Akshit_Singh_CV.pdf" download>Download PDF</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="wrap" style="padding-bottom:4rem">
+        <object class="cv-frame" data="assets/Akshit_Singh_CV.pdf#view=FitH" type="application/pdf" aria-label="Akshit Singh CV">
+          <p class="cv-fallback">Your browser can&rsquo;t show PDFs here. <a href="assets/Akshit_Singh_CV.pdf">Download the CV</a> instead.</p>
+        </object>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>&copy; <span data-year>2026</span> Akshit Singh</span>
+        <span>The background art is generated live in your browser: one idea from science or AI on each page.</span>
+      </div>
+    </footer>
+  </div>
+
+  <button class="art-pause" type="button" data-pause aria-pressed="false"><span>Pause animation</span></button>
+  <p class="scene-caption" aria-hidden="true"><b data-scene-title></b><span data-scene-text></span></p>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

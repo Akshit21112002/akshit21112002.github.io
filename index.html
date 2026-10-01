@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Akshit Singh</title>
+  <meta name="description" content="Akshit Singh, AI researcher working on test-time learning for vision-language models at MIT CSAIL and Dartmouth.">
+  <meta name="theme-color" content="#12142b">
+  <meta property="og:title" content="Akshit Singh">
+  <meta property="og:description" content="Akshit Singh, AI researcher working on test-time learning for vision-language models at MIT CSAIL and Dartmouth.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='16' fill='%2312142b'/><circle cx='11' cy='13' r='3' fill='%23ffb547'/><circle cx='20' cy='11' r='2' fill='%23e8e6f3'/><circle cx='17' cy='20' r='3.5' fill='%23e8e6f3'/><circle cx='24' cy='19' r='1.5' fill='%23ffb547'/></svg>">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<!-- Background art for this page: data-scene = terrain | landscape | network | interference -->
+<body data-scene="terrain">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="bg" aria-hidden="true">
+    <canvas id="bg-art"></canvas>
+  </div>
+  <div class="scrim" aria-hidden="true"></div>
+
+  <header class="site-nav">
+    <nav class="wrap nav-inner" aria-label="Main">
+      <a class="nav-name" href="index.html">Akshit Singh</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" aria-current="page">About</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="journey.html">Journey</a></li>
+          <li><a href="cv.html">CV</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page">
+    <main id="main">
+      <section class="hero hero--home">
+        <div class="wrap home-intro hero-anim">
+          <!-- Your photo: save it as assets/img/headshot.jpg (portrait, about 800 x 1000 px) -->
+          <figure class="headshot">
+            <img src="assets/img/headshot.jpg" alt="Portrait of Akshit Singh" width="800" height="1000">
+          </figure>
+          <div>
+            <h1 class="name"><span>Akshit</span><span>Singh</span></h1>
+            <p class="lead">I build vision-language models that keep learning after deployment, from unlabeled test data alone.</p>
+            <p class="hero-meta">Master&rsquo;s student in Computer Science at Dartmouth College and student researcher at MIT CSAIL.</p>
+            <div class="actions">
+              <a class="btn btn--solid" href="publications.html">See publications</a>
+              <a class="btn btn--ghost" href="assets/Akshit_Singh_CV.pdf" target="_blank" rel="noopener">See CV</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <section class="section" aria-labelledby="about-h">
+          <h2 id="about-h">About</h2>
+          <div class="section-body">
+            <p>I&rsquo;m a Master&rsquo;s student in Computer Science at Dartmouth College. I&rsquo;m also a student researcher at MIT CSAIL, where I work with Jehanzeb Mirza and James Glass on test-time improvement, long-context reasoning and new architectures for vision-language models.</p>
+            <p>Our CVPR 2026 paper, TTRV, lets a vision-language model improve itself with reinforcement learning on unlabeled test samples, sometimes only one. With frequency- and diversity-based rewards, open-source models gained accuracy across more than 15 benchmarks and surpassed GPT-4o by 2%.</p>
+            <p>Before that I studied Electrical Engineering at IIT Jodhpur, where most of my time went to the Multimodal Interaction Lab with Rajendra Nagar. There I worked on neural distance fields built from LiDAR sequences for mapping and localization, which became an oral paper at ACCV 2024.</p>
+
+            <ul class="interests">
+              <li><strong>Test-time learning for VLMs</strong><span>Models that adapt and self-improve at inference, without ground-truth labels.</span></li>
+              <li><strong>Long-context multimodal reasoning</strong><span>Reasoning over long sequences of images, video and text.</span></li>
+              <li><strong>Neural fields and 3D perception</strong><span>Implicit surfaces, LiDAR mapping and shape correspondence.</span></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="news-h">
+          <h2 id="news-h">News</h2>
+          <div class="section-body">
+            <ul class="news">
+              <li><time datetime="2026-09">Sep 2026</time><span>Started my Master&rsquo;s in Computer Science at Dartmouth.</span></li>
+              <li><time datetime="2026">2026</time><span><a href="publications.html">TTRV</a> accepted to CVPR 2026 as first author.</span></li>
+              <li><time datetime="2025-07">Jul 2025</time><span>Joined MIT CSAIL as a student researcher.</span></li>
+              <li><time datetime="2025-05">May 2025</time><span>Graduated with a B.Tech in Electrical Engineering from IIT Jodhpur.</span></li>
+              <li><time datetime="2024">2024</time><span>CCNDF accepted as an oral at ACCV 2024, with a 5.6% acceptance rate.</span></li>
+              <li><time datetime="2024">2024</time><span>Selected for Amazon ML Summer School, among the top 1,000 students in India.</span></li>
+              <li><time datetime="2024">2024</time><span>Sole-author student abstract on bias in generative AI accepted at AAAI 2024.</span></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section section--wide" aria-labelledby="places-h">
+          <div class="places-head">
+            <h2 id="places-h">Places</h2>
+            <p>Some of the places I&rsquo;ve been, and a few I&rsquo;d like to show you.</p>
+          </div>
+          <!-- PLACES: one <figure> per video. Put files in videos/ and edit the name and caption.
+               Copy a <figure> block to add more; delete one to remove it. -->
+          <div class="places">
+            <figure class="place-tile">
+              <div class="place-media"><video src="videos/place-1.mp4" muted loop playsinline preload="metadata" aria-label="Video of Place name"></video></div>
+              <figcaption><b>Place name</b><span>Country, year</span></figcaption>
+            </figure>
+            <figure class="place-tile">
+              <div class="place-media"><video src="videos/place-2.mp4" muted loop playsinline preload="metadata" aria-label="Video of Place name"></video></div>
+              <figcaption><b>Place name</b><span>Country, year</span></figcaption>
+            </figure>
+            <figure class="place-tile">
+              <div class="place-media"><video src="videos/place-3.mp4" muted loop playsinline preload="metadata" aria-label="Video of Place name"></video></div>
+              <figcaption><b>Place name</b><span>Country, year</span></figcaption>
+            </figure>
+            <figure class="place-tile">
+              <div class="place-media"><video src="videos/place-4.mp4" muted loop playsinline preload="metadata" aria-label="Video of Place name"></video></div>
+              <figcaption><b>Place name</b><span>Country, year</span></figcaption>
+            </figure>
+            <figure class="place-tile">
+              <div class="place-media"><video src="videos/place-5.mp4" muted loop playsinline preload="metadata" aria-label="Video of Place name"></video></div>
+              <figcaption><b>Place name</b><span>Country, year</span></figcaption>
+            </figure>
+            <figure class="place-tile">
+              <div class="place-media"><video src="videos/place-6.mp4" muted loop playsinline preload="metadata" aria-label="Video of Place name"></video></div>
+              <figcaption><b>Place name</b><span>Country, year</span></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="edu-h">
+          <h2 id="edu-h">Education</h2>
+          <div class="section-body edu">
+            <div>
+              <h3>Dartmouth College</h3>
+              <p>Master&rsquo;s in Computer Science, Guarini School of Graduate and Advanced Studies</p>
+              <p>Hanover, NH, September 2026 to present</p>
+            </div>
+            <div>
+              <h3>Indian Institute of Technology Jodhpur</h3>
+              <p>Bachelor of Technology in Electrical Engineering</p>
+              <p>Jodhpur, India, graduated May 2025</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="contact-h">
+          <h2 id="contact-h">Contact</h2>
+          <div class="section-body">
+            <p>I&rsquo;m always happy to talk about test-time learning, multimodal reasoning or possible collaborations.</p>
+            <div class="contact-links">
+              <a href="mailto:akshitsingh21112002@gmail.com">akshitsingh21112002@gmail.com</a>
+              <!-- TODO: paste your Google Scholar and GitHub URLs -->
+              <a href="#">Google Scholar</a>
+              <a href="#">GitHub</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>&copy; <span data-year>2026</span> Akshit Singh</span>
+        <span>The background art is generated live in your browser: one idea from science or AI on each page.</span>
+      </div>
+    </footer>
+  </div>
+
+  <button class="art-pause" type="button" data-pause aria-pressed="false"><span>Pause animation</span></button>
+  <p class="scene-caption" aria-hidden="true"><b data-scene-title></b><span data-scene-text></span></p>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

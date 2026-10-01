@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Experience & mentors | Akshit Singh</title>
+  <meta name="description" content="Research experience and mentors of Akshit Singh.">
+  <meta name="theme-color" content="#12142b">
+  <meta property="og:title" content="Experience & mentors | Akshit Singh">
+  <meta property="og:description" content="Research experience and mentors of Akshit Singh.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='16' fill='%2312142b'/><circle cx='11' cy='13' r='3' fill='%23ffb547'/><circle cx='20' cy='11' r='2' fill='%23e8e6f3'/><circle cx='17' cy='20' r='3.5' fill='%23e8e6f3'/><circle cx='24' cy='19' r='1.5' fill='%23ffb547'/></svg>">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<!-- Background art for this page: data-scene = terrain | landscape | network | interference -->
+<body data-scene="network">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="bg" aria-hidden="true">
+    <canvas id="bg-art"></canvas>
+  </div>
+  <div class="scrim" aria-hidden="true"></div>
+
+  <header class="site-nav">
+    <nav class="wrap nav-inner" aria-label="Main">
+      <a class="nav-name" href="index.html">Akshit Singh</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">About</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="journey.html" aria-current="page">Journey</a></li>
+          <li><a href="cv.html">CV</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page">
+    <main id="main">
+      <section class="hero">
+        <div class="wrap hero-anim">
+          <h1 class="page-title">Experience and mentors</h1>
+          <p class="page-intro">The labs I&rsquo;ve worked in, and the people who taught me how to do research.</p>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <section class="section" aria-labelledby="exp-h">
+          <h2 id="exp-h">Research experience</h2>
+          <ol class="timeline" reversed>
+          <li class="t-item">
+            <span class="t-date">July 2025 to present</span>
+            <h3>Student Researcher</h3>
+            <p class="t-org">MIT CSAIL, supervised by Jehanzeb Mirza and advised by James Glass</p>
+            <p>Test-time improvement, long-context reasoning and architectural advances for vision-language models.</p>
+            <button class="toggle" type="button" data-toggle aria-expanded="false" aria-controls="e-mit" data-open="Show details" data-close="Hide details"><span data-toggle-label>Show details</span></button>
+            <div class="panel" id="e-mit"><div><ul>
+                  <li>Built Test-Time Reinforcement Learning for VLMs, which lets models self-improve without ground-truth labels through adaptive inference.</li>
+                  <li>Designed frequency-based and diversity-based rewards that beat standard majority voting for test-time adaptation.</li>
+                  <li>Evaluated on 15+ multimodal benchmarks, with strong gains even from a single unlabeled test sample and open-source VLMs surpassing GPT-4o by 2%.</li>
+                  <li>Studied when and how models self-evolve in multimodal settings.</li>
+                  <li>First-author paper accepted to CVPR 2026.</li>
+            </ul></div></div>
+          </li>
+          <li class="t-item">
+            <span class="t-date">May 2024 to July 2024</span>
+            <h3>Deep Learning Researcher</h3>
+            <p class="t-org">HyperVerge, Bangalore</p>
+            <p>Vision-language models and detectors for unstructured identity documents.</p>
+            <button class="toggle" type="button" data-toggle aria-expanded="false" aria-controls="e-hv" data-open="Show details" data-close="Hide details"><span data-toggle-label>Show details</span></button>
+            <div class="panel" id="e-hv"><div><ul>
+                  <li>Used vision-language models to generate labelled data for unstructured identity documents.</li>
+                  <li>Trained object detectors such as YOLOv8 for ID cards including voter ID and Aadhaar cards.</li>
+                  <li>Built task-specific datasets for different ID types and applications.</li>
+            </ul></div></div>
+          </li>
+          <li class="t-item">
+            <span class="t-date">September 2023 to May 2024</span>
+            <h3>Student Researcher</h3>
+            <p class="t-org">Multimodal Interaction Lab, IIT Jodhpur</p>
+            <p>Dense 3D shape matching for clothed human bodies.</p>
+            <button class="toggle" type="button" data-toggle aria-expanded="false" aria-controls="e-shape" data-open="Show details" data-close="Hide details"><span data-toggle-label>Show details</span></button>
+            <div class="panel" id="e-shape"><div><ul>
+                  <li>Converted triangular meshes into M&ouml;bius grid spheres, turning non-rigid shapes into rigid ones for simpler mapping.</li>
+                  <li>Processed the transformed data with graph neural networks and spherical harmonics.</li>
+                  <li>Used functional-map solvers for accurate shape matching; paper submitted to IEEE Signal Processing Letters.</li>
+            </ul></div></div>
+          </li>
+          <li class="t-item">
+            <span class="t-date">August 2023 to June 2024</span>
+            <h3>Student Researcher</h3>
+            <p class="t-org">Multimodal Interaction Lab and DRDO, IIT Jodhpur, supervised by Rajendra Nagar</p>
+            <p>LiDAR SLAM with neural distance fields, published as CCNDF.</p>
+            <button class="toggle" type="button" data-toggle aria-expanded="false" aria-controls="e-slam" data-open="Show details" data-close="Hide details"><span data-toggle-label>Show details</span></button>
+            <div class="panel" id="e-slam"><div><ul>
+                  <li>Modelled point clouds as implicit surfaces with neural distance fields to map 3D surroundings.</li>
+                  <li>Used the second-order derivatives of the field to compute the radius of curvature and constrain learning on complex geometry.</li>
+                  <li>Improved mapping and localization, and explored RGB-D and LiDAR SLAM methods.</li>
+                  <li>First-author paper accepted as an oral at ACCV 2024.</li>
+            </ul></div></div>
+          </li>
+          <li class="t-item">
+            <span class="t-date">June 2023 to May 2025</span>
+            <h3>Student Researcher</h3>
+            <p class="t-org">Multimodal Interaction Lab and DRDO, IIT Jodhpur</p>
+            <p>Spatio-temporal representations of dynamic scenes for autonomous vehicles.</p>
+            <button class="toggle" type="button" data-toggle aria-expanded="false" aria-controls="e-dyn" data-open="Show details" data-close="Hide details"><span data-toggle-label>Show details</span></button>
+            <div class="panel" id="e-dyn"><div><ul>
+                  <li>Extended signed distance fields to real-time use with LiDAR point clouds.</li>
+                  <li>Developed a method to segment static and dynamic objects in a moving scene.</li>
+                  <li>Designed a geometric loss from distance-field gradients that regularizes the temporal domain, similar to eikonal regularization.</li>
+                  <li>Improved on existing methods in surface reconstruction and dynamic-object segmentation.</li>
+            </ul></div></div>
+          </li>
+          <li class="t-item">
+            <span class="t-date">April 2023 to June 2024</span>
+            <h3>Research Intern</h3>
+            <p class="t-org">Texas State University, supervised by Heena Rathore</p>
+            <p>Anomaly detection for connected vehicles, and reinforcement learning under moral uncertainty.</p>
+            <button class="toggle" type="button" data-toggle aria-expanded="false" aria-controls="e-txst" data-open="Show details" data-close="Hide details"><span data-toggle-label>Show details</span></button>
+            <div class="panel" id="e-txst"><div><ul>
+                  <li>Built an anomaly detection and recovery framework using Bayesian online changepoint detection and Bayesian forecasting.</li>
+                  <li>Simulated sensor faults including white and L&eacute;vy noise, bias and spikes to test robustness.</li>
+                  <li>Created a dataset from U.S. DOT Tampa connected-vehicle data; first-author paper in Elsevier Vehicular Communications.</li>
+                  <li>Designed a voting-based system to combine divergent ethical theories in AI decision-making, with a Bayesian framework that updates moral beliefs from environment rewards.</li>
+            </ul></div></div>
+          </li>
+          <li class="t-item">
+            <span class="t-date">May 2022 to July 2023</span>
+            <h3>Student Researcher</h3>
+            <p class="t-org">Multimodal Interaction Lab, IIT Jodhpur</p>
+            <p>Text-to-image generation and cultural bias.</p>
+            <button class="toggle" type="button" data-toggle aria-expanded="false" aria-controls="e-gen" data-open="Show details" data-close="Hide details"><span data-toggle-label>Show details</span></button>
+            <div class="panel" id="e-gen"><div><ul>
+                  <li>Worked on neural text-to-image generation with VAEs and transformers.</li>
+                  <li>Created the Indian context Image caption Dataset and Indian Heritage Dataset, with 250k+ image-caption pairs.</li>
+                  <li>Sole-author student abstract accepted at AAAI 2024.</li>
+            </ul></div></div>
+          </li>
+          </ol>
+        </section>
+
+        <section class="section" aria-labelledby="mentor-h">
+          <h2 id="mentor-h">Mentors</h2>
+          <div class="section-body">
+            <div class="mentors">
+          <article class="mentor">
+            <!-- To use a photo: replace the initials with <img src="assets/img/name.jpg" alt=""> -->
+            <div class="mentor-mark" aria-hidden="true">JM</div>
+            <div>
+              <h3>M. Jehanzeb Mirza</h3>
+              <p class="role">Supervisor, MIT CSAIL</p>
+              <p>Supervises my work on test-time learning for vision-language models, including TTRV.</p>
+            </div>
+          </article>
+          <article class="mentor">
+            <!-- To use a photo: replace the initials with <img src="assets/img/name.jpg" alt=""> -->
+            <div class="mentor-mark" aria-hidden="true">JG</div>
+            <div>
+              <h3>James Glass</h3>
+              <p class="role">Advisor, MIT CSAIL</p>
+              <p>Advises my research at CSAIL and co-authored TTRV.</p>
+            </div>
+          </article>
+          <article class="mentor">
+            <!-- To use a photo: replace the initials with <img src="assets/img/name.jpg" alt=""> -->
+            <div class="mentor-mark" aria-hidden="true">RN</div>
+            <div>
+              <h3>Rajendra Nagar</h3>
+              <p class="role">Supervisor, IIT Jodhpur</p>
+              <p>Supervised my 3D vision research: CCNDF, dynamic scenes and human shape matching.</p>
+            </div>
+          </article>
+          <article class="mentor">
+            <!-- To use a photo: replace the initials with <img src="assets/img/name.jpg" alt=""> -->
+            <div class="mentor-mark" aria-hidden="true">HR</div>
+            <div>
+              <h3>Heena Rathore</h3>
+              <p class="role">Supervisor, Texas State University</p>
+              <p>Supervised my work on connected-vehicle security and reinforcement learning under moral uncertainty.</p>
+            </div>
+          </article>
+            </div>
+            <p class="muted" style="margin-top:2.5rem">I&rsquo;ve also been lucky to work with Serena Yeung-Levy, Hilde Kuehne, Rogerio Feris, Sivan Doveh, Wei Lin, Paul Gavrikov, Shyam Marjit, Karan Bhakuni and Deepanshu Solanki.</p>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="school-h">
+          <h2 id="school-h">Summer schools</h2>
+          <div class="section-body edu">
+            <div>
+              <h3>Amazon ML Summer School, 2024</h3>
+              <p>Selected among the top 1,000 students across India.</p>
+            </div>
+            <div>
+              <h3>Climate Change AI Summer School, 2023</h3>
+              <p>Computer vision for remote tracking and monitoring of ecosystems.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>&copy; <span data-year>2026</span> Akshit Singh</span>
+        <span>The background art is generated live in your browser: one idea from science or AI on each page.</span>
+      </div>
+    </footer>
+  </div>
+
+  <button class="art-pause" type="button" data-pause aria-pressed="false"><span>Pause animation</span></button>
+  <p class="scene-caption" aria-hidden="true"><b data-scene-title></b><span data-scene-text></span></p>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
