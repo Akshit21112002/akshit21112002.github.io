@@ -1,7 +1,8 @@
 /* =========================================================
    Akshit Singh — site script
    Background art: one scientific / AI idea per page, drawn as points.
-     terrain       About          LiDAR scan of drifting ridges
+     diffusion     About          Diffusion model denoising noise into science objects
+     terrain       (spare)        LiDAR scan of drifting ridges
      landscape     Publications   Gradient descent on a loss landscape
      network       Journey        Forward and backward passes in a neural net
      interference  CV             Two-source wave interference
@@ -143,6 +144,119 @@
           }
           fieldDot(c, r, R * 0.92 + 6, G * 0.92 + 6, B * 0.92 + 8);
         }
+      }
+    },
+  };
+
+  // 0. Diffusion: denoising pure noise into a galaxy, a strange attractor and DNA --
+  scenes.diffusion = {
+    title: "Diffusion",
+    text: "A generative model denoising pure noise into a galaxy, a strange attractor and DNA, then letting each dissolve back.",
+    push: true,
+    shapes: ["spiral galaxy", "Lorenz attractor", "DNA double helix"],
+    CYCLE: 13,
+    init() {
+      const n = clamp(Math.round((W * H) / (scale * scale) / 520), 1200, 2800);
+      this.n = n;
+      const gauss = () => { let u = 0, v = 0; while (!u) u = Math.random(); v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+      this.gauss = gauss;
+      this.noise = new Float32Array(n * 3);
+      for (let i = 0; i < n * 3; i++) this.noise[i] = gauss();
+      const T = [], C = [];
+
+      // spiral galaxy (two arms + bulge)
+      let p = new Float32Array(n * 3), c = new Float32Array(n * 3);
+      for (let i = 0; i < n; i++) {
+        let x, y, z, col;
+        if (i % 7 === 0) {
+          x = gauss() * 0.12; y = gauss() * 0.07; z = gauss() * 0.12; col = [255, 206, 150];
+        } else {
+          const r = 0.08 + 0.92 * Math.pow(Math.random(), 0.75);
+          const th = (i % 2) * Math.PI + r * 5.6 + gauss() * 0.3 * (1.1 - r * 0.5);
+          x = r * Math.cos(th); z = r * Math.sin(th); y = gauss() * 0.035;
+          col = Math.random() < 0.06 ? [240, 238, 250] : lerp3([255, 190, 120], BLUE, Math.min(1, r * 1.3));
+        }
+        p.set([x, y, z], i * 3); c.set(col, i * 3);
+      }
+      T.push(p); C.push(c);
+
+      // Lorenz attractor (sigma 10, rho 28, beta 8/3)
+      p = new Float32Array(n * 3); c = new Float32Array(n * 3);
+      let lx = 0.1, ly = 0, lz = 0;
+      const dt = 0.005, lstep = () => { const dx = 10 * (ly - lx), dy = lx * (28 - lz) - ly, dz = lx * ly - (8 / 3) * lz; lx += dx * dt; ly += dy * dt; lz += dz * dt; };
+      for (let k = 0; k < 2000; k++) lstep();
+      for (let i = 0; i < n; i++) {
+        for (let k = 0; k < 4; k++) lstep();
+        p.set([lx / 27, -(lz - 24) / 27, ly / 27], i * 3);
+        c.set(lerp3(AMBER, BLUE, clamp(0.5 + lx / 30, 0, 1)), i * 3);
+      }
+      T.push(p); C.push(c);
+
+      // DNA double helix with base-pair rungs
+      p = new Float32Array(n * 3); c = new Float32Array(n * 3);
+      const turns = 2.6 * Math.PI, rad = 0.36, rungs = 26;
+      for (let i = 0; i < n; i++) {
+        if (i % 10 < 7) {
+          const s = Math.random() * 2 - 1, strand = i % 2, ph = s * turns + strand * Math.PI;
+          p.set([Math.cos(ph) * rad + gauss() * 0.012, s * 0.95, Math.sin(ph) * rad + gauss() * 0.012], i * 3);
+          c.set(strand ? BLUE : AMBER, i * 3);
+        } else {
+          const s = ((Math.floor(Math.random() * rungs) + 0.5) / rungs) * 2 - 1, ph = s * turns, u = Math.random();
+          const ax = Math.cos(ph) * rad, az = Math.sin(ph) * rad;
+          p.set([ax + (-2 * ax) * u, s * 0.95, az + (-2 * az) * u], i * 3);
+          c.set([170, 168, 205], i * 3);
+        }
+      }
+      T.push(p); C.push(c);
+      this.targets = T; this.colors = C;
+      this.status = "";
+    },
+    step() {
+      // Brownian jitter: an Ornstein-Uhlenbeck walk keeps the noise alive
+      const N = this.noise, a = 0.985, b = Math.sqrt(1 - a * a);
+      for (let i = 0; i < N.length; i++) N[i] = N[i] * a + b * ((Math.random() + Math.random() + Math.random()) * 2 - 3) * 1.15;
+    },
+    phase(t) {
+      const tt = reduceMotion ? 7 : t + 0.2;
+      const cyc = Math.floor(tt / this.CYCLE), u = tt - cyc * this.CYCLE;
+      const sm = (x) => x * x * (3 - 2 * x);
+      let ab, label;
+      if (u < 0.6) { ab = 0; label = "Pure noise, step 1000"; }
+      else if (u < 5.6) { const q = (u - 0.6) / 5; ab = sm(q); label = "Denoising, step " + Math.round((1 - q) * 1000); }
+      else if (u < 10.4) { ab = 1; label = "Sample: " + this.shapes[cyc % 3]; }
+      else { const q = (u - 10.4) / 2.6; ab = 1 - sm(q); label = "Adding noise, step " + Math.round(q * 1000); }
+      return { ab, label, shape: cyc % 3, u };
+    },
+    draw(t) {
+      faintGrid();
+      const { ab, label, shape } = this.phase(t);
+      this.status = label;
+      const P = this.targets[shape], Cc = this.colors[shape], N = this.noise;
+      const sa = Math.sqrt(ab), sn = Math.sqrt(1 - ab) * 1.25;
+      const wide = W > 900 * scale;
+      const cx0 = W * (wide ? 0.74 : 0.5), cy0 = H * (wide ? 0.44 : 0.33);
+      const R = Math.min(W * (wide ? 0.2 : 0.4), H * 0.34);
+      // shape-specific orientation
+      const yaw = t * (shape === 0 ? 0.0 : 0.22);
+      const spin = shape === 0 ? t * 0.12 : 0;
+      const pitch = shape === 0 ? 1.12 : 0.22;
+      const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+      const cs = Math.cos(spin), ss = Math.sin(spin);
+      const dimCol = [120, 120, 172];
+      for (let i = 0; i < this.n; i++) {
+        const k = i * 3;
+        let x = P[k], y = P[k + 1], z = P[k + 2];
+        if (spin) { const nx = x * cs - z * ss; z = x * ss + z * cs; x = nx; }
+        x = sa * x + sn * N[k]; y = sa * y + sn * N[k + 1]; z = sa * z + sn * N[k + 2];
+        let X = x * cy + z * sy, Z = -x * sy + z * cy;
+        const Y = y * cp - Z * sp; Z = y * sp + Z * cp;
+        if (Z < -2.4) continue;
+        const s = clamp(3 / (3 + Z), 0.45, 1.6);
+        const px = cx0 + X * R * s, py = cy0 + Y * R * s;
+        const m = ab * ab;
+        const r = dimCol[0] + (Cc[k] - dimCol[0]) * m, g = dimCol[1] + (Cc[k + 1] - dimCol[1]) * m, bb = dimCol[2] + (Cc[k + 2] - dimCol[2]) * m;
+        const depth = clamp(0.8 - Z * 0.25, 0.4, 1.1);
+        dot(px, py, maxR * (0.35 + 0.45 * ab) * s, r * depth, g * depth, bb * depth, i);
       }
     },
   };
@@ -359,7 +473,7 @@
     },
   };
 
-  const scene = scenes[body.dataset.scene] || scenes.terrain;
+  const scene = scenes[body.dataset.scene] || scenes.diffusion;
 
   function resize() {
     const cssW = window.innerWidth, cssH = window.innerHeight;
@@ -397,6 +511,7 @@
     F.push = scene.push && !reduceMotion && mouse.x > -1e3;
     scene.draw(simTime / 1000);
     ctx.putImageData(img, 0, 0);
+    if (capStatus && scene.status !== undefined && capStatus.textContent !== scene.status) capStatus.textContent = scene.status;
   }
 
   function loop(now) {
@@ -433,6 +548,7 @@
   // Scene caption
   const capTitle = document.querySelector("[data-scene-title]");
   const capText = document.querySelector("[data-scene-text]");
+  const capStatus = document.querySelector("[data-scene-status]");
   if (capTitle) capTitle.textContent = scene.title;
   if (capText) capText.textContent = scene.text;
 
