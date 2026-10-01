@@ -276,3 +276,19 @@ body.past-hero .art-pause { opacity: 0; transform: translateY(10px); pointer-eve
   .art-pause { position: absolute; top: 4.6rem; right: var(--pad); left: auto; bottom: auto; }
   body.past-hero .art-pause { opacity: 1; transform: none; pointer-events: auto; }
 }
+
+/* ---------- News: "see more" with arrow ---------- */
+.panel .news--more { margin: 0; padding: 0; color: inherit; }
+.panel .news--more li { margin: 0; }
+.news--more li:first-child { padding-top: 0.85rem; }
+.toggle--more { margin-top: 1.1rem; color: var(--mist); }
+.toggle--more::before { display: none; }
+.toggle--more::after { content: "\2193"; display: inline-block; color: var(--amber); transition: transform 0.3s ease; }
+.toggle--more[aria-expanded="true"]::after { transform: rotate(180deg); }
+
+/* closed panels can't be tabbed into */
+.panel > div { visibility: hidden; transition: visibility 0s linear 0.4s; }
+.panel.is-open > div { visibility: visible; transition: visibility 0s; }
+
+/* live step counter under the About-page caption */
+.scene-status { display: block; margin-top: 0.3rem; color: var(--amber); font-style: italic; font-variant-numeric: tabular-nums; }
